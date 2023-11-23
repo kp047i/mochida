@@ -15,10 +15,7 @@ const END_TIME = 0;
 
 export type Typing = {
   endGame: () => void;
-  updateResult: ({
-    numMissType,
-    numMochi,
-  }: Result) => void;
+  updateResult: ({ numMissType, numMochi }: Result) => void;
 };
 
 export const Typing: React.FC<Typing> = ({ endGame, updateResult }) => {
