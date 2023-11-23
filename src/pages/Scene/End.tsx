@@ -2,17 +2,17 @@ import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { resetResult } from "../../features/typing/TypingSentenceMaster";
+import { resetResult as reset } from "../../features/typing/TypingSentenceMaster";
 import { Text } from "../../components/ui/Text";
-import { Result } from "../game";
+import { Result } from "../../features/game/useGameResult";
 
 export type End = {
   result: Result;
-  setResult: React.Dispatch<React.SetStateAction<Result>>;
   startGame: () => void;
+  resetResult: () => void;
 };
 
-export const End: React.FC<End> = ({ result, setResult, startGame }) => {
+export const End: React.FC<End> = ({ result, startGame, resetResult }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }} // 初期状態
@@ -53,8 +53,8 @@ export const End: React.FC<End> = ({ result, setResult, startGame }) => {
           css={{ fontSize: "24px" }}
           onClick={() => {
             startGame();
+            reset();
             resetResult();
-            setResult({ numMochi: 0, numMissType: 0 });
           }}
         >
           再チャレンジ

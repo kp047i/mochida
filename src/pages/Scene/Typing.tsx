@@ -8,23 +8,26 @@ import endSound from "../../assets/end.mp3";
 import { getColor } from "../../utils/colors";
 import { useTypingSentenceMaster } from "../../features/typing/TypingSentenceMaster";
 import { Text } from "../../components/ui/Text";
-import { Result } from "../game";
+import { Result } from "../../features/game/useGameResult";
 
 const INITIAL_TIME = 60;
 const END_TIME = 0;
 
 export type Typing = {
   endGame: () => void;
-  setResult: React.Dispatch<React.SetStateAction<Result>>;
+  updateResult: ({
+    numMissType,
+    numMochi,
+  }: Result) => void;
 };
 
-export const Typing: React.FC<Typing> = ({ endGame, setResult }) => {
+export const Typing: React.FC<Typing> = ({ endGame, updateResult }) => {
   const soundOptions = { volume: 0.1 };
   const [endPlay] = useSound(endSound, soundOptions);
 
   const onTimeOver = async () => {
     endPlay();
-    setResult({
+    updateResult({
       numMochi: numMochi,
       numMissType: numMissType,
     });

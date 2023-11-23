@@ -1,20 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Countdown } from "./Scene/Countdown";
 import { End } from "./Scene/End";
 import { Start } from "./Scene/Start";
 import { Typing } from "./Scene/Typing";
 import { getColor } from "../utils/colors";
 import { useGameScene } from "../features/game/useGameScene";
-
-export type Result = {
-  numMochi: number;
-  numMissType: number;
-};
+import { useGameResult } from "../features/game/useGameResult";
 
 export const Game: React.FC = () => {
   const { scene, startCountdown, startGame, endGame, startTyping } =
     useGameScene();
-  const [result, setResult] = useState<Result>({ numMochi: 0, numMissType: 0 });
+  const { result, updateResult, resetResult } = useGameResult();
+
   return (
     <div>
       <div
@@ -39,10 +36,14 @@ export const Game: React.FC = () => {
           )}
           {scene === "countdown" && <Countdown startTyping={startTyping} />}
           {scene === "typing" && (
-            <Typing endGame={endGame} setResult={setResult} />
+            <Typing endGame={endGame} updateResult={updateResult} />
           )}
           {scene === "end" && (
-            <End result={result} setResult={setResult} startGame={startGame} />
+            <End
+              result={result}
+              resetResult={resetResult}
+              startGame={startGame}
+            />
           )}
         </div>
       </div>
