@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "mochida/game",
+    path: "/mochida/game",
     element: <Game />,
   },
 ]);
