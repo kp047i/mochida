@@ -125,7 +125,7 @@ export const useTypingSentenceMaster = (
         inputKeys.pop();
       }
     },
-    [value, time, advanceTime]
+    [successPlay, value, completePlay, failurePlay, time, advanceTime]
   );
 
   return {
