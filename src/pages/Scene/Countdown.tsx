@@ -4,18 +4,17 @@ import { useTimer } from "use-timer";
 
 import { getColor } from "../../utils/colors";
 import { resetResult } from "../../features/typing/TypingSentenceMaster";
-import { ScenceType } from "./type";
 
 const INITIAL_TIME = 3;
 const END_TIME = 0;
 
 export type Countdown = {
-  setScene: React.Dispatch<React.SetStateAction<ScenceType>>;
+  startTyping: () => void;
 };
 
-export const Countdown: React.FC<Countdown> = ({ setScene }) => {
+export const Countdown: React.FC<Countdown> = ({ startTyping }) => {
   const onTimeOver = () => {
-    setScene("typing");
+    startTyping();
     resetResult();
   };
 

@@ -5,15 +5,14 @@ import { Link } from "react-router-dom";
 import { resetResult } from "../../features/typing/TypingSentenceMaster";
 import { Text } from "../../components/ui/Text";
 import { Result } from "../game";
-import { ScenceType } from "./type";
 
 export type End = {
   result: Result;
   setResult: React.Dispatch<React.SetStateAction<Result>>;
-  setScene: React.Dispatch<React.SetStateAction<ScenceType>>;
+  startGame: () => void;
 };
 
-export const End: React.FC<End> = ({ result, setResult, setScene }) => {
+export const End: React.FC<End> = ({ result, setResult, startGame }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }} // 初期状態
@@ -53,7 +52,7 @@ export const End: React.FC<End> = ({ result, setResult, setScene }) => {
           to="/game"
           css={{ fontSize: "24px" }}
           onClick={() => {
-            setScene("start");
+            startGame();
             resetResult();
             setResult({ numMochi: 0, numMissType: 0 });
           }}

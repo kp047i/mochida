@@ -4,7 +4,7 @@ import { End } from "./Scene/End";
 import { Start } from "./Scene/Start";
 import { Typing } from "./Scene/Typing";
 import { getColor } from "../utils/colors";
-import { ScenceType } from "./Scene/type";
+import { useGameScene } from "../features/game/useGameScene";
 
 export type Result = {
   numMochi: number;
@@ -12,7 +12,8 @@ export type Result = {
 };
 
 export const Game: React.FC = () => {
-  const [scene, setScene] = useState<ScenceType>("start");
+  const { scene, startCountdown, startGame, endGame, startTyping } =
+    useGameScene();
   const [result, setResult] = useState<Result>({ numMochi: 0, numMissType: 0 });
   return (
     <div>
@@ -33,13 +34,15 @@ export const Game: React.FC = () => {
             width: "640px",
           }}
         >
-          {scene === "start" && <Start scene={scene} setScene={setScene} />}
-          {scene === "countdown" && <Countdown setScene={setScene} />}
+          {scene === "start" && (
+            <Start scene={scene} startCountdown={startCountdown} />
+          )}
+          {scene === "countdown" && <Countdown startTyping={startTyping} />}
           {scene === "typing" && (
-            <Typing setScene={setScene} setResult={setResult} />
+            <Typing endGame={endGame} setResult={setResult} />
           )}
           {scene === "end" && (
-            <End result={result} setResult={setResult} setScene={setScene} />
+            <End result={result} setResult={setResult} startGame={startGame} />
           )}
         </div>
       </div>

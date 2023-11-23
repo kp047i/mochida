@@ -9,17 +9,16 @@ import { getColor } from "../../utils/colors";
 import { useTypingSentenceMaster } from "../../features/typing/TypingSentenceMaster";
 import { Text } from "../../components/ui/Text";
 import { Result } from "../game";
-import { ScenceType } from "./type";
 
 const INITIAL_TIME = 60;
 const END_TIME = 0;
 
 export type Typing = {
-  setScene: React.Dispatch<React.SetStateAction<ScenceType>>;
+  endGame: () => void;
   setResult: React.Dispatch<React.SetStateAction<Result>>;
 };
 
-export const Typing: React.FC<Typing> = ({ setScene, setResult }) => {
+export const Typing: React.FC<Typing> = ({ endGame, setResult }) => {
   const soundOptions = { volume: 0.1 };
   const [endPlay] = useSound(endSound, soundOptions);
 
@@ -30,7 +29,7 @@ export const Typing: React.FC<Typing> = ({ setScene, setResult }) => {
       numMissType: numMissType,
     });
 
-    setScene("end");
+    endGame();
   };
 
   const { time, advanceTime } = useTimer({

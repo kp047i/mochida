@@ -1,22 +1,22 @@
 import { motion } from "framer-motion";
 import React, { useCallback, useEffect } from "react";
-import { ScenceType } from "./type";
+import { ScenceType } from "../../features/game/type";
 import { getColor } from "../../utils/colors";
 import { Text } from "../../components/ui/Text";
 
 export type Start = {
   scene: ScenceType;
-  setScene: React.Dispatch<React.SetStateAction<ScenceType>>;
+  startCountdown: () => void;
 };
 
-export const Start: React.FC<Start> = ({ scene, setScene }) => {
+export const Start: React.FC<Start> = ({ scene, startCountdown }) => {
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       if (scene === "start" && event.code === "Space") {
-        setScene("countdown");
+        startCountdown();
       }
     },
-    [scene, setScene]
+    [scene, startCountdown]
   );
 
   useEffect(() => {
