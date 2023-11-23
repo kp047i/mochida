@@ -7,11 +7,11 @@ import { Game } from "./pages/game.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/mochida",
+    path: "/",
     element: <App />,
   },
   {
-    path: "/mochida/game",
+    path: "/game",
     element: <Game />,
   },
 ]);

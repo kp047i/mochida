@@ -46,7 +46,7 @@ export const End: React.FC<End> = ({ result, startGame, resetResult }) => {
         }}
       >
         <Link
-          to="/mochida/game"
+          to="/game"
           css={{ fontSize: "24px" }}
           onClick={() => {
             startGame();

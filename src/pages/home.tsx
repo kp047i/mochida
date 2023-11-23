@@ -54,7 +54,7 @@ export function Home() {
             }}
           >
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <LinkButton to="/mochida/game">ゲームを開始する</LinkButton>
+              <LinkButton to="/game">ゲームを開始する</LinkButton>
             </motion.div>
           </div>
         </div>
