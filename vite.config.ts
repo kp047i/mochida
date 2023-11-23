@@ -8,5 +8,5 @@ export default defineConfig({
       jsxImportSource: "@emotion/react",
     }),
   ],
-  base: "/mochida/",
+  base: process.env.GITHUB_ACTIONS ? "/mochida/" : "",
 });
