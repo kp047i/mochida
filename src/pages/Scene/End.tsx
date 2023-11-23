@@ -45,9 +45,6 @@ export const End: React.FC<End> = ({ result, startGame, resetResult }) => {
           gap: "16px",
         }}
       >
-        <Link to="/ranking" css={{ fontSize: "24px" }}>
-          ランキングへ
-        </Link>
         <Link
           to="/game"
           css={{ fontSize: "24px" }}
